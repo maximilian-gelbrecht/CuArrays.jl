@@ -411,7 +411,7 @@ end
 @testset "threading" begin
   CuArrays.disable_timings()  # FIXME
 
-  Threads.@threads for i in 1:Threads.nthreads()*10
+  Threads.@threads for i in 1:Threads.nthreads()*100
     # uses libraries (rand, gemm) to test library handles
     # allocates and uses unsafe_free to cover the allocator
     a = CuArrays.rand(1024, 1024)
