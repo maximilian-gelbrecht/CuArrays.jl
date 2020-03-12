@@ -189,7 +189,7 @@ a [`OutOfGPUMemoryError`](@ref) if the allocation request cannot be satisfied.
     alloc_stats.pool_nalloc += 1
     alloc_stats.pool_alloc += sz
 
-    bt = if Base.JLOptions().debug_level >= 2
+    bt = if Base.JLOptions().debug_level >= 1
       backtrace()
     else
       []
@@ -420,7 +420,7 @@ function memory_status(io::IO=stdout)
       @debug "Discrepancy of $(Base.format_bytes(abs(discrepancy))) between memory pool and allocator"
     end
 
-    if Base.JLOptions().debug_level >= 2
+    if Base.JLOptions().debug_level >= 1
       for (ptr, (sz,bt)) in requested
         @printf(io, "\nOutstanding memory allocation of %s at %p",
                 Base.format_bytes(sz), Int(ptr))
